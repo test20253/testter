@@ -1,0 +1,4 @@
+pandas==1.4.3
+numpy==1.26.4
+rich==13.9.4
+pyspelling==2.10
