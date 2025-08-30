@@ -1,0 +1,91 @@
+trigger:
+- main
+pr: none
+
+name: $(TeamProject)_$(environment)_$(name)$(etags)_$(Date:yyyyMMdd)$(Rev:.r)
+appendCommitMessageToRunName: false
+pool:
+  name: "CTP Quality Assurance Pool"
+
+variables:
+- group: QACGAutomation 
+
+
+stages:
+  - stage: QA
+    jobs:
+      - job: Build
+        timeoutInMinutes: 120
+        steps:
+          - task: PipAuthenticate@1
+            displayName: "Authenticate Azure Artifacts"
+            inputs:
+              pythonDownloadServiceConnections: 'ScriptlessPhytonConnection'
+
+          - powershell: |
+              $venvPath = "C:\venvs\venv_3.7.0"
+              if (-Not (Test-Path $venvPath)) {
+                  Write-Host "Virtual environment not found. Creating at $venvPath..."
+                  python -m venv $venvPath
+              } else {
+                  Write-Host "Virtual environment already exists at $venvPath"
+              }
+            displayName: 'Ensure venv_3.7.0 exists'               
+
+          - powershell: |
+              C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+              .\Resources\scriptlesVersionVerification.ps1 -pat_token '$(pat_token)' -requiredVersion '3.7.0'
+            displayName: 'Upgrade Scriptless version' 
+
+          - powershell: |
+              C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+              python -m pip install --upgrade pip
+              pip install setuptools wheel twine cython
+              pip install -r requirements.txt
+              echo $(pat_token)
+              echo $(email)
+            workingDirectory: '$(Build.SourcesDirectory)'
+            displayName: 'Install dependencies using venv_3.7.0'
+ 
+          - powershell: |
+              C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+              taskkill /F /IM chrome.exe
+              taskkill /F /IM WINWORD.EXE
+              Get-Process -name msedge -ErrorAction SilentlyContinue | ForEach-Object { $_.CloseMainWindow() } -ErrorAction SilentlyContinue
+              cd $(System.DefaultWorkingDirectory)
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser1" -newEmail "$(User1Email)" -newPassword "$(User1Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser2" -newEmail "$(User2Email)" -newPassword "$(User2Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser3" -newEmail "$(User3Email)" -newPassword "$(User3Password)"
+              .\Resources\credentialCreation.ps1 -target "eydocument" -userName "us\$(User1Email)" -userPassword "$(User1Password)"
+              .\Resources\runDocHelperv2.ps1
+              echo "scriptless run --mode='$(mode)' --browser='chromium-edge-incognito' --file='$(file)' --name='$(name)' --environment='$(environment)' --tags='$(etags)' --dataindex='$(index)' --parallel='$(parallel)' --thread_count='$(thread_count)'"
+              scriptless run --mode='$(mode)' --browser='chromium-edge-incognito' --file='$(file)' --name='$(name)' --environment='$(environment)' --tags='$(etags)' --dataindex='$(index)' --parallel='$(parallel)' --thread_count='$(thread_count)'
+      
+            workingDirectory: '$(build.sourcesdirectory)'
+            displayName: 'Executing Tests'
+            continueOnError: true
+            timeoutInMinutes: 120
+
+          - task: PublishTestResults@2
+            displayName: 'Publish Test Results **/*.xml'
+            inputs:
+              testResultsFiles: '**/exec-*/x*.xml'
+              searchFolder: '$(System.DefaultWorkingDirectory)/Tests/static/reports/'
+              mergeTestResults: true
+              failTaskOnFailedTests: true
+              testRunTitle: 'Script-less Execution'
+              publishRunAttachments: false
+            continueOnError: true
+
+          - task: CopyFiles@2
+            displayName: 'Copy Test results to: $(Build.ArtifactStagingDirectory)/'
+            inputs:
+              SourceFolder: '$(Pipeline.Workspace)/s/Tests/static/'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/'
+
+          - task: PublishPipelineArtifact@1
+            displayName: 'Publishing Test results'
+            inputs:
+              targetPath: '$(Build.ArtifactStagingDirectory)/'
+              artifact: 'Execution-Report'
+            continueOnError: true

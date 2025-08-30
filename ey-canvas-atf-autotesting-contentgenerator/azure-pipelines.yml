@@ -1,0 +1,108 @@
+trigger:
+- main
+pr: none
+
+name: $(TeamProject)_$(environment)_$(name)$(etags)_$(Date:yyyyMMdd)$(Rev:.r)
+appendCommitMessageToRunName: false
+pool:
+  name: "CTP Quality Assurance Pool"
+
+variables:
+- group: QACanvasAutomation 
+
+stages:
+  - stage: QA
+    jobs:
+      - job: Build
+        timeoutInMinutes: 360
+        steps:
+          - task: PipAuthenticate@1
+            displayName: "Authenticate Azure Artifacts"
+            inputs:
+              pythonDownloadServiceConnections: 'ScriptlessPhytonConnection'
+
+          - powershell: |
+              $venvPath = "C:\venvs\venv_3.7.0"
+              if (-Not (Test-Path $venvPath)) {
+                  Write-Host "Virtual environment not found. Creating at $venvPath..."
+                  python -m venv $venvPath
+              } else {
+                  Write-Host "Virtual environment already exists at $venvPath"
+              }
+            displayName: 'Ensure venv_3.7.0 exists'               
+
+          - powershell: |
+              C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+              .\Resources\scriptlesVersionVerification.ps1 -pat_token '$(pat_token)' -requiredVersion '3.7.0'
+            displayName: 'Upgrade Scriptless version' 
+
+          - powershell: |
+              C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+              python -m pip install --upgrade pip
+              pip install setuptools wheel twine cython
+              pip install -r requirements.txt
+              echo $(pat_token)
+              echo $(email)
+            workingDirectory: '$(Build.SourcesDirectory)'
+            displayName: 'Install dependencies using venv_3.7.0'
+ 
+          - powershell: |
+              C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+              taskkill /F /IM chrome.exe
+              taskkill /F /IM WINWORD.EXE
+              Get-Process -name msedge -ErrorAction SilentlyContinue | ForEach-Object { $_.CloseMainWindow() } -ErrorAction SilentlyContinue
+              cd $(System.DefaultWorkingDirectory)
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser1" -newEmail "$(User1Email)" -newPassword "$(User1Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser2" -newEmail "$(User2Email)" -newPassword "$(User2Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser3" -newEmail "$(User3Email)" -newPassword "$(User3Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser4" -newEmail "$(User4Email)" -newPassword "$(User4Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser5" -newEmail "$(User5Email)" -newPassword "$(User5Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser6" -newEmail "$(User6Email)" -newPassword "$(User6Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser7" -newEmail "$(User7Email)" -newPassword "$(User7Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser8" -newEmail "$(User8Email)" -newPassword "$(User8Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser9" -newEmail "$(User9Email)" -newPassword "$(User9Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser10" -newEmail "$(User10Email)" -newPassword "$(User10Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser11" -newEmail "$(User11Email)" -newPassword "$(User11Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser12" -newEmail "$(User12Email)" -newPassword "$(User12Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser13" -newEmail "$(User13Email)" -newPassword "$(User13Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser14" -newEmail "$(User14Email)" -newPassword "$(User14Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser15" -newEmail "$(User15Email)" -newPassword "$(User15Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser10" -newEmail "$(LTUser10Email)" -newPassword "$(LTUser10Password)"	
+              .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser11" -newEmail "$(LTUser11Email)" -newPassword "$(LTUser11Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser12" -newEmail "$(LTUser12Email)" -newPassword "$(LTUser12Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser13" -newEmail "$(LTUser13Email)" -newPassword "$(LTUser13Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser14" -newEmail "$(LTUser14Email)" -newPassword "$(LTUser14Password)"
+              .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser15" -newEmail "$(LTUser15Email)" -newPassword "$(LTUser15Password)"              
+              .\Resources\credentialCreation.ps1 -target "eydocument" -userName "us\$(User1Email)" -userPassword "$(User1Password)"
+              .\Resources\runDocHelperv2.ps1
+              echo "scriptless run --mode='$(mode)' --browser='chromium-edge-incognito' --file='$(file)' --name='$(name)' --environment='$(environment)' --tags='$(etags)' --dataindex='$(index)' --parallel='$(parallel)' --thread_count='$(thread_count)'"
+              scriptless run --mode='$(mode)' --browser='chromium-edge-incognito' --file='$(file)' --name='$(name)' --environment='$(environment)' --tags='$(etags)' --dataindex='$(index)' --parallel='$(parallel)' --thread_count='$(thread_count)'
+      
+            workingDirectory: '$(build.sourcesdirectory)'
+            displayName: 'Executing Tests'
+            continueOnError: true
+            timeoutInMinutes: 360
+
+          - task: PublishTestResults@2
+            displayName: 'Publish Test Results **/*.xml'
+            inputs:
+              testResultsFiles: '**/exec-*/x*.xml'
+              searchFolder: '$(System.DefaultWorkingDirectory)/Tests/static/reports/'
+              mergeTestResults: true
+              failTaskOnFailedTests: true
+              testRunTitle: 'Script-less Execution'
+              publishRunAttachments: false
+            continueOnError: true
+
+          - task: CopyFiles@2
+            displayName: 'Copy Test results to: $(Build.ArtifactStagingDirectory)/'
+            inputs:
+              SourceFolder: '$(Pipeline.Workspace)/s/Tests/static/'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/'
+
+          - task: PublishPipelineArtifact@1
+            displayName: 'Publishing Test results'
+            inputs:
+              targetPath: '$(Build.ArtifactStagingDirectory)/'
+              artifact: 'Execution-Report'
+            continueOnError: true

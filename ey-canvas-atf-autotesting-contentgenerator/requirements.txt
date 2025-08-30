@@ -1,0 +1,17 @@
+CTE-ADO-Script-less==3.7.0
+pyautoit
+psutil
+haralyzer
+xmltodict
+msal
+pywinauto
+python-dotenv
+pygetwindow
+jsonpath
+jsonpath_ng
+matplotlib
+pysondb
+bs4
+azure-keyvault-secrets
+azure-identity
+robotframework-faker

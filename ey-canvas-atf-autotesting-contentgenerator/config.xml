@@ -1,0 +1,57 @@
+<configurations>
+  <project_configuration>
+    <wd>C:/Users/TY749ZY/PycharmProjects/CG/ey-canvas-atf-autotesting-contentgenerator</wd>
+    <repo> </repo>
+    <branch> </branch>
+    <chrome-user-dir>C:/selenium/ChromeProfile</chrome-user-dir>
+    <edge-user-dir>C:/selenium/EdgeProfile</edge-user-dir>
+    <chrome_driver_path> </chrome_driver_path>
+    <edge_driver_path>C:\SeleniumWebDrivers</edge_driver_path>
+    <firefox_driver_path> </firefox_driver_path>
+  </project_configuration>
+  <Execution>
+    <mode>testcase</mode>
+    <file> </file>
+    <name> </name>
+    <tags> </tags>
+    <environment>QA</environment>
+    <browser>chrome</browser>
+    <env_vars>{}</env_vars>
+    <dataindex> </dataindex>
+    <retry>0</retry>
+    <record>False</record>
+    <parallel>tests</parallel>
+    <thread_count>0</thread_count>
+    <execute_failed_test>False</execute_failed_test>
+    <local>True</local>
+    <git_pull>False</git_pull>
+    <language> </language>
+    <visual_mode>verify</visual_mode>
+  </Execution>
+  <ADO>
+    <update_ado>False</update_ado>
+    <organization> </organization>
+    <project> </project>
+    <email> </email>
+    <pat_token> </pat_token>
+    <build_id> </build_id>
+    <ado_plan_id> </ado_plan_id>
+    <ado_suite_id> </ado_suite_id>
+  </ADO>
+  <Result_notification_for_pipeline>
+    <enable_notification>False</enable_notification>
+    <email_subject> </email_subject>
+    <email_title> </email_title>
+    <email_ids> </email_ids>
+    <teams_channel_webhook_url> </teams_channel_webhook_url>
+  </Result_notification_for_pipeline>
+  <Debug>
+    <screen_capture_all_steps>False</screen_capture_all_steps>
+    <loglevel>INFO</loglevel>
+    <debug>False</debug>
+  </Debug>
+  <Tools>
+    <refresh_metadata>False</refresh_metadata>
+    <custom_build> </custom_build>
+  </Tools>
+</configurations>
