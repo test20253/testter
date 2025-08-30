@@ -1,0 +1,21 @@
+steps:
+  - task: PipAuthenticate@1
+    inputs:
+      artifactFeeds: 'ADO-Scriptless'
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install requests
+    displayName: 'Install dependencies'
+
+
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Write your PowerShell commands here.
+        cd $(System.DefaultWorkingDirectory)
+        cd ./Azure-Pipelines/Templates
+        Write-Host "${{ parameters.file_name }}"
+        python Email_report.py --environment '$(environment_env)' --pat_token '$(pat_token_ADO)' --sendgrid_token '$(sendgrid_token)' --buildid '$(buildid)' --email_recipients '$(email_recipients)' --emailSubject '$(emailSubject)'
+        Write-Host "Report is sent"

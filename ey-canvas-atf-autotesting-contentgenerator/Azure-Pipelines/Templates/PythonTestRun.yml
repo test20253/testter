@@ -1,0 +1,41 @@
+parameters:
+  - name: mode
+    type: string
+  - name: browser
+    type: string
+    default: 'chromium-edge-incognito'
+  - name: file
+    type: string
+  - name: name
+    type: string
+  - name: environment
+    type: string
+  - name: update_ado
+    type: string
+  - name: ado_plan_id
+    type: string
+  - name: ado_suite_id
+    type: string
+  - name: etags
+    type: string
+  - name: index
+    type: string
+  - name: parallel
+    type: string
+  - name: thread_count
+    type: string
+  - name: email
+    type: string
+  - name: pat_token
+    type: string
+
+steps:
+- powershell: |
+    C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+    pip show CTE-ADO-Script-less
+    echo "scriptless run --mode='${{ parameters.mode }}' --browser='${{ parameters.browser }}' --file='${{ parameters.file }}' --name='${{ parameters.name }}' --environment='${{ parameters.environment }}' --retry=0 --parallel='${{ parameters.parallel }}' --thread_count='${{ parameters.thread_count }}' --execute_failed_test=False --pat_token='$(pat_token_ADO)' --tags='${{ parameters.etags }}' --update_ado='${{ parameters.update_ado }}' --ado_plan_id='$(ado_plan_id)' --ado_suite_id='$(ado_suite_id)'"
+    scriptless run --mode='${{ parameters.mode }}' --browser='${{ parameters.browser }}' --file='${{ parameters.file }}' --name='${{ parameters.name }}' --environment='${{ parameters.environment }}' --retry=0 --parallel='${{ parameters.parallel }}' --thread_count='${{ parameters.thread_count }}' --execute_failed_test=False --pat_token='$(pat_token_ADO)' --tags='${{ parameters.etags }}' --update_ado='${{ parameters.update_ado }}' --ado_plan_id='$(ado_plan_id)' --ado_suite_id='$(ado_suite_id)'
+  workingDirectory: '$(build.sourcesdirectory)'
+  displayName: 'Running Python Tests'
+  continueOnError: true
+  timeoutInMinutes: 360

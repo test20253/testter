@@ -1,0 +1,113 @@
+{
+    "type": "message",
+    "attachments": [
+        {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "content": {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                    {
+                        "type": "Container",
+                        "style": "emphasis",
+                        "items": [
+                            {
+                                "type": "ColumnSet",
+                                "columns": [
+                                    {
+                                        "type": "Column",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "size": "ExtraLarge",
+                                                "weight": "Bolder",
+                                                "text": "🚀CG Automation Release 🚀",
+                                                "wrap": true
+                                            }
+                                        ],
+                                        "width": "stretch"
+                                    }
+                                ]
+                            }
+                        ],
+                        "bleed": true
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "ColumnSet",
+                                "columns": [
+                                    {
+                                        "type": "Column",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "size": "ExtraLarge",
+                                                "text": "{{release_version}}",
+                                                "wrap": true
+                                            }
+                                        ],
+                                        "width": "stretch"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "TextBlock",
+                                "spacing": "Small",
+                                "size": "Medium",
+                                "weight": "Bolder",
+                                "text": "**Important!** Hi team. The branches have been created for **{{release_version}}**. Please make sure to include any pending PRs that need to be part of this upcoming release.",
+                                "wrap": true
+                            },
+                            {
+                                "type": "FactSet",
+                                "spacing": "Large",
+                                "facts": [
+                                    {
+                                        "title": "Principal Branch",
+                                        "value": "release/candidate_{{release_version}}"
+                                    },
+                                    {
+                                        "title": "CG",
+                                        "value": "release/CG_candidate_{{release_version}}"
+                                    },
+                                    {
+                                        "title": "RC",
+                                        "value": "release/RC_candidate_{{release_version}}"
+                                    },
+                                     {
+                                        "title": "Giants",
+                                        "value": "release/Giants_candidate_{{release_version}}"
+                                    }
+
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "spacing": "Large",
+                        "style": "emphasis",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "Branch Creation: {{branch_creation_date}}",
+                                "wrap": true
+                            },
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "Release Date: {{release_date}}",
+                                "wrap": true
+                            }                            
+                        ],
+                        "bleed": true
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+steps:
+  - task: PipAuthenticate@1
+    displayName: "Authenticate Azure Artifacts"
+    inputs:
+      pythonDownloadServiceConnections: 'ScriptlessPhytonConnection'

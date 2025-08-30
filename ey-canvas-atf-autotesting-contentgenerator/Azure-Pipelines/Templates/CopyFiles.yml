@@ -1,0 +1,6 @@
+steps:
+  - task: CopyFiles@2
+    displayName: 'Copy Test results to: $(Build.ArtifactStagingDirectory)/'
+    inputs:
+      SourceFolder: '$(Pipeline.Workspace)/s/Tests/static/'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/'

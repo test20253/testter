@@ -1,0 +1,88 @@
+
+{
+    "type": "message",
+    "attachments": [
+        {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "content": {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                    {
+                        "type": "Container",
+                        "style": "emphasis",
+                        "items": [
+                            {
+                                "type": "ColumnSet",
+                                "columns": [
+                                    {
+                                        "type": "Column",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "size": "ExtraLarge",
+                                                "weight": "Bolder",
+                                                "text": "⚠️ **Code Freeze in Effect**⚠️ ",
+                                                "style": "heading",
+                                                "wrap": true,
+                                                "horizontalAlignment": "Center"
+                                            }
+                                        ],
+                                        "width": "stretch"
+                                    }
+                                ]
+                            }
+                        ],
+                        "bleed": true
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "ColumnSet",
+                                "columns": [
+                                    {
+                                        "type": "Column",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "size": "ExtraLarge",
+                                                "text": "❄️❄️❄️❄️❄️❄️❄️❄️❄️ ",
+                                                "wrap": true,
+                                                "style": "heading",
+                                                "horizontalAlignment": "Center"
+                                            }
+                                        ],
+                                        "width": "stretch"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "TextBlock",
+                                "spacing": "Small",
+                                "size": "Medium",
+                                "text": "We are now in Code Freeze until the release is complete. No changes are allowed except for critical fixes approved by the release team.",
+                                "wrap": true
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "spacing": "Large",
+                        "style": "emphasis",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "Please focus on testing and stabilization. Reach out if you have any questions.\n🔒 Freeze remains until further notice.",
+                                "wrap": true
+                            }
+                        ],
+                        "bleed": true
+                    }
+                ]
+            }
+        }
+    ]
+}

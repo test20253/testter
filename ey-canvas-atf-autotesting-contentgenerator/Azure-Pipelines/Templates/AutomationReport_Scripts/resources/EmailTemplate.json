@@ -1,0 +1,43 @@
+{
+    "personalizations": [
+        {
+            "to": ["recipient1@example.com", "recipient2@example.com"],
+            "subject": "Your Email Subject | your_environment | your_formatted_date | your_release_version | your_pass_percentage% pass",
+            "dynamic_template_data": {
+                "environment": "your_environment",
+                "header": "Your Email Subject | your_environment | your_formatted_date | your_release_version",
+                "subject": "Your Email Subject | your_environment | your_formatted_date | your_release_version | your_pass_percentage% pass",
+                "totaltests": 0,
+                "passedtests": 0,
+                "failedtests": 0,
+                "skippedtests": 0,
+                "Percentage": 0.0,
+                "executionTime": "your_execution_time",
+                "totalSuites": 0,
+                "buildid": "your_build_id",
+                "emailSubject": "Your Email Subject",
+                "artifacts": "https://dev.azure.com/your_project/_build/results?buildId=your_build_id&view=artifacts&pathAsName=false&type=publishedArtifacts",
+                "suites": []
+            }
+        }
+    ],
+    "from": {
+        "email": "your_email@example.com"
+    },
+    "content": [
+        {
+            "type": "text/plain",
+            "value": ""
+        }
+    ],
+    "attachments": [
+        {
+            "content": "your_base64_encoded_content",
+            "type": "image/png",
+            "filename": "chart.png",
+            "disposition": "inline",
+            "content_id": "Chart"
+        }
+    ],
+    "template_id": "your_template_id"
+}

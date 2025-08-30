@@ -1,0 +1,13 @@
+parameters:
+  - name: email
+    type: string
+  - name: pat_token
+    type: string
+  - name: required_version
+    type: string
+
+steps:
+  - powershell: |
+      C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+      .\Resources\scriptlesVersionVerification.ps1 -pat_token '$(pat_token)' -requiredVersion '${{ parameters.required_version }}'
+    displayName: 'Install Scriptless ${{ parameters.required_version }}'

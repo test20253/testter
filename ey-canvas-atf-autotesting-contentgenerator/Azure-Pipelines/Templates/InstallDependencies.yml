@@ -1,0 +1,8 @@
+steps:
+  - script: |
+      python -m pip install --upgrade pip
+      pip install setuptools wheel twine cython
+      pip install -r requirements.txt
+      echo $(pat_token)
+      echo $(email)
+    displayName: 'Install dependencies'

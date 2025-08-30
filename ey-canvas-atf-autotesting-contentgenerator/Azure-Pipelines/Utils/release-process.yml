@@ -1,0 +1,65 @@
+trigger:
+- main
+pr: none
+
+name: Release Process
+appendCommitMessageToRunName: false
+
+parameters:
+  - name: release_version
+    type: string
+    default: 'v0.0.1'
+  - name: release_date
+    type: string
+    default: '2025-11-30'
+
+pool:
+  name: "CTP QA Agent Pool"
+  demands:
+    - agent.name -equals XIFRAGDGENP2948
+
+variables:
+  - group: QACanvasAutomation
+
+stages:
+  - stage: QA
+    jobs:
+      - job: Build
+        timeoutInMinutes: 130
+        steps:
+          - task: PipAuthenticate@1
+            displayName: "Authenticate Azure Artifacts"
+            inputs:
+              pythonDownloadServiceConnections: 'ScriptlessPhytonConnection'
+
+          - powershell: |
+              gh --version
+              gh auth status
+            displayName: 'Check GitHub CLI Installation & Auth'
+            condition: succeeded()
+
+          - powershell: |
+              python .\Resources\ReleaseProcess\CodeFreezeMSG.py --repo "ey-org/ey-canvas-atf-autotesting-contentgenerator"
+            displayName: 'CodeFreeze Message in All PRs'
+            condition: succeeded()
+          - powershell: |
+              python .\Resources\ReleaseProcess\CandidateCreation.py --release_version "${{parameters.release_version}}" --repo "ey-org/ey-canvas-atf-autotesting-contentgenerator"
+            displayName: 'Create Branches'
+            condition: succeeded()
+
+          - task: PowerShell@2
+            displayName: 'Send Release Notification'
+            inputs:
+              targetType: 'inline'
+              script: |
+                $date = Get-Date -Format "yyyy-MM-dd"
+                echo "##vso[task.setvariable variable=currentDate]$date"
+                python .\Azure-Pipelines\Templates\AutomationReport_Scripts\AutomationReleaseProcess.py --release_version "${{parameters.release_version}}" --release_date "${{parameters.release_date}}" --branch_creation_date "$date" --webhook_release_channel "$(CGWebhookURL)" --webhook_general_channel "$(CGWebhookURL)"
+                Write-Host "Notification was sent"
+            condition: succeeded()
+
+          - powershell: |
+              gh --version
+              gh auth status
+            displayName: 'Check GitHub CLI Authentication'
+            condition: succeeded()

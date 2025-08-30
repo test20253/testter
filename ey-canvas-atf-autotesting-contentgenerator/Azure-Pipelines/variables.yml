@@ -1,0 +1,16 @@
+variables:
+  mode: 'testsuite'
+  browser: 'chromium-edge-incognito'
+  file: ''
+  name: ''
+  environment: 'DEV2'
+  update_ado: 'full_update'
+  retry: '0'
+  parallel: 'suite'
+  thread_count: '0'
+  execute_failed_test: 'False'
+  etags: 'Forms-P1-Dev2'
+  index: ''
+  organization: 'EYCTCanvas'
+  project: 'FAST.ATF'
+  currentDate:

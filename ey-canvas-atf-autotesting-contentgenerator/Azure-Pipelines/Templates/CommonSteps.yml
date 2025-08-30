@@ -1,0 +1,100 @@
+# common-steps.yml
+
+parameters: 
+- name: mode
+- name: browser
+- name: file
+- name: name
+- name: environment
+- name: update_ado
+- name: ado_plan_id
+- name: ado_suite_id
+- name: etags
+- name: index
+- name: parallel
+- name: thread_count
+- name: email
+- name: pat_token
+- name: DochelperUserEmail
+- name: DochelperUserPassword
+- name: currentDate
+
+steps:
+- template: PipAuthenticate.yml
+- template: ConfigureVenv.yml
+  parameters:
+    venvPath: 'C:\venvs\venv_3.7.0'
+- template: ScriptlesInstallation.yml
+  parameters:
+    email: ${{ parameters.email }}
+    pat_token: ${{ parameters.pat_token }}
+    required_version: '3.7.0'
+- template: InstallDependencies.yml
+- template: PowerShellScripts.yml
+  parameters:
+    User1Email: $(User1Email)
+    User1Password: $(User1Password)
+    User2Email: $(User2Email)
+    User2Password: $(User2Password)
+    User3Email: $(User3Email)
+    User3Password: $(User3Password)
+    User4Email: $(User4Email)
+    User4Password: $(User4Password)
+    User5Email: $(User5Email)
+    User5Password: $(User5Password)
+    User6Email: $(User6Email)
+    User6Password: $(User6Password)
+    User7Email: $(User7Email)
+    User7Password: $(User7Password)
+    User8Email: $(User8Email)
+    User8Password: $(User8Password)
+    User9Email: $(User9Email)
+    User9Password: $(User9Password)
+    User10Email: $(User10Email)
+    User10Password: $(User10Password)
+    User11Email: $(User11Email)
+    User11Password: $(User11Password)
+    User12Email: $(User12Email)
+    User12Password: $(User12Password)
+    User13Email: $(User13Email)
+    User13Password: $(User13Password)
+    User14Email: $(User14Email)
+    User14Password: $(User14Password)
+    User15Email: $(User15Email)
+    User15Password: $(User15Password)
+    LTUser10Email: $(LTUser10Email)
+    LTUser10Password: $(LTUser10Password)
+    LTUser11Email: $(LTUser11Email)
+    LTUser11Password: $(LTUser11Password)
+    LTUser12Email: $(LTUser12Email)
+    LTUser12Password: $(LTUser12Password)
+    LTUser13Email: $(LTUser13Email)
+    LTUser13Password: $(LTUser13Password)
+    LTUser14Email: $(LTUser14Email)
+    LTUser14Password: $(LTUser14Password)
+    LTUser15Email: $(LTUser15Email)
+    LTUser15Password: $(LTUser15Password)
+    DochelperUserEmail: ${{ parameters.DochelperUserEmail }}
+    DochelperUserPassword: ${{ parameters.DochelperUserPassword }}
+- template: PythonTestRun.yml
+  parameters:
+    mode: ${{ parameters.mode }}
+    browser: ${{ parameters.browser }}
+    file: ${{ parameters.file }}
+    name: ${{ parameters.name }}
+    environment: ${{ parameters.environment }}
+    update_ado: ${{ parameters.update_ado }}
+    ado_plan_id: ${{ parameters.ado_plan_id }}
+    ado_suite_id: ${{ parameters.ado_suite_id }}
+    etags: ${{ parameters.etags }}
+    index: ${{ parameters.index }}
+    parallel: ${{ parameters.parallel }}
+    thread_count: ${{ parameters.thread_count }}
+    email: ${{ parameters.email }}
+    pat_token: ${{ parameters.pat_token }}  
+- template: PublishTestResults.yml
+- template: CopyFiles.yml
+- template: PublishArtifact.yml
+  parameters:
+    targetPath: '$(Build.ArtifactStagingDirectory)/'
+    artifactName: 'Execution-Report-${{ parameters.environment }}-${{ parameters.currentDate }}'

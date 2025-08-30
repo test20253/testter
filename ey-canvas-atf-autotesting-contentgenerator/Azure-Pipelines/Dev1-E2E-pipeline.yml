@@ -1,0 +1,483 @@
+trigger: none
+pr: none
+
+schedules:
+- cron: "05 02 * * 1,3"
+  displayName: Every Monday & Wednesday at 7:30 AM IST
+  branches:
+    include:
+    - release/v8.6.0
+  always: true
+
+name: CG_E2E_DEV1_$(Date:yyyyMMdd)$(Rev:.r)
+appendCommitMessageToRunName: false
+
+pool:
+  name: "CTP Quality Assurance Pool"
+
+variables:
+- name: mydate
+  value: $[format('{0:yyyyMMddHHmmss}', pipeline.startTime)]
+- group: QACanvasAutomation
+- template: variables.yml
+
+stages: 
+  - stage: Dev1_E2E
+    jobs:
+    - job: Forms_P1
+      timeoutInMinutes: 300
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'Forms-E2E-P1'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Forms_P2
+      timeoutInMinutes: 300
+      dependsOn: Forms_P1
+      steps:
+        - template: Templates/CommonSteps.yml
+          parameters:
+            currentDate: $(Agent.JobName)-$(mydate)
+            mode: 'testsuite'
+            browser: 'chromium-edge-incognito'
+            file: ''
+            name: ''
+            environment: 'DEV1'
+            update_ado: 'full_update'
+            ado_plan_id: $(ado_plan_id)
+            ado_suite_id: $(ado_suite_id)
+            etags: 'Forms-E2E-P2'
+            index: ''
+            parallel: 'suite'
+            thread_count: '0'
+            email: $(email)
+            pat_token: $(pat_token)
+            DochelperUserEmail: $(User1Email)
+            DochelperUserPassword: $(User1Password)
+
+    - job: PSPIndex
+      timeoutInMinutes: 180
+      dependsOn: PSPIndex_SA
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'PSP-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Tasks_P1
+      timeoutInMinutes: 360
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'Task-E2E-P1'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Tasks_P2
+      timeoutInMinutes: 360
+      steps:
+        - template: Templates/CommonSteps.yml
+          parameters:
+            currentDate: $(Agent.JobName)-$(mydate)
+            mode: 'testsuite'
+            browser: 'chromium-edge-incognito'
+            file: ''
+            name: ''
+            environment: 'DEV1'
+            update_ado: 'full_update'
+            ado_plan_id: $(ado_plan_id)
+            ado_suite_id: $(ado_suite_id)
+            etags: 'Task-E2E-P2'
+            index: ''
+            parallel: 'suite'
+            thread_count: '0'
+            email: $(email)
+            pat_token: $(pat_token)
+            DochelperUserEmail: $(User1Email)
+            DochelperUserPassword: $(User1Password)
+    - job: GA
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'GA-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: UI
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'UI-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: RiskFactor
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'RF-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: ManageAccess
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'MA-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Map
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'MAP-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Forms_SA
+      timeoutInMinutes: 240
+      dependsOn: Forms_P2
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'Forms-SA-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: PSPIndex_SA
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'PSP-SA-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Tasks_SA
+      timeoutInMinutes: 240
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'Task-SA-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: GA_SA
+      timeoutInMinutes: 180
+      dependsOn: GA
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'GA-SA-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+
+    - job: RiskFactor_SA
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'RF-SA-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Profile
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'Profile-Dev-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)      
+    - job: Profile_SA
+      timeoutInMinutes: 180
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'Profile-Dev-SA-E2E'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Artemis_Task
+      timeoutInMinutes: 300
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'DEV-ARTEMIS-TASK-ES'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Artemis_Task_SA
+      timeoutInMinutes: 300
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'DEV-ARTEMIS-TASK-ES-SA'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+    - job: Artemis_Form
+      timeoutInMinutes: 300
+      steps:
+      - template: Templates/CommonSteps.yml
+        parameters:
+          currentDate: $(Agent.JobName)-$(mydate)
+          mode: 'testsuite'
+          browser: 'chromium-edge-incognito'
+          file: ''
+          name: ''
+          environment: 'DEV1'
+          update_ado: 'full_update'
+          ado_plan_id: $(ado_plan_id)
+          ado_suite_id: $(ado_suite_id)
+          etags: 'DEV-ARTEMIS-FORM-ES'
+          index: ''
+          parallel: 'suite'
+          thread_count: '0'
+          email: $(email)
+          pat_token: $(pat_token)
+          DochelperUserEmail: $(User1Email)
+          DochelperUserPassword: $(User1Password)
+
+
+  - stage: Send_report_teams
+    dependsOn: Dev1_E2E
+    condition: succeededOrFailed()
+    jobs:
+      - job: Email_Report
+        steps:
+          - template: Templates/ExecutionResultNotification.yml
+            parameters:
+              ExecutionEnvironment: $(Environment)

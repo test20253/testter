@@ -1,0 +1,11 @@
+steps:
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results **/*.xml'
+    inputs:
+      testResultsFiles: '**/exec-*/x*.xml'
+      searchFolder: '$(System.DefaultWorkingDirectory)/Tests/static/reports/'
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      testRunTitle: 'Script-less Execution'
+      publishRunAttachments: false
+    continueOnError: true

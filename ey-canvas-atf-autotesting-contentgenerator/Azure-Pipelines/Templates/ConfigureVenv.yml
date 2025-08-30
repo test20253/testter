@@ -1,0 +1,18 @@
+# This template is used to ensure that a specific Python virtual environment exists.
+parameters:
+  - name: venvPath
+    type: string
+    default: 'C:\venvs\venv_3.7.0'
+
+steps:
+- powershell: |
+    $venvPath = "${{ parameters.venvPath }}"
+    if (-Not (Test-Path $venvPath)) {
+        Write-Host "Virtual environment not found. Creating at $venvPath..."
+        python -m venv $venvPath
+    } else {
+        Write-Host "Virtual environment already exists at $venvPath"
+    }
+  workingDirectory: '$(Build.SourcesDirectory)'
+  displayName: 'Ensure venv_3.7.0 exists'
+  continueOnError: true

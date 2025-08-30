@@ -1,0 +1,24 @@
+matrix:
+- name: XML_TC
+  sources:
+  - Tests/app_modules/*.xml
+  - Tests/test_cases/*.xml
+  default_encoding: utf-8
+  aspell:
+    lang: en
+    d: en_US
+  dictionary:
+    wordlists:
+    - Azure-Pipelines/Templates/wordlist.txt
+    encoding: utf-8
+  pipeline:
+  - pyspelling.filters.xml:
+      attributes:
+      - name
+      - description
+      ignores:
+      - parameter
+      - method
+      - IF
+      - ELSEIF
+      - arguments

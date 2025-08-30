@@ -1,0 +1,183 @@
+
+{
+    "type": "message",
+    "attachments": [
+        {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "content": {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                    {
+                        "type": "TextBlock",
+                        "text": "{{notification_title}} Automation Report  🤖",
+                        "wrap": true,
+                        "horizontalAlignment": "Center",
+                        "size": "ExtraLarge",
+                        "style": "heading",
+                        "weight": "Bolder",
+                        "isSubtle": false,
+                        "fontType": "Default",
+                        "maxLines": 2
+                    },
+                    {
+                        "type": "TextBlock",
+                        "text": "| {{environment}} | {{formatted_date}} | {{release_version}} | ",
+                        "wrap": true,
+                        "horizontalAlignment": "Center",
+                        "weight": "Lighter",
+                        "size": "Default"
+                    },
+                    {
+                        "type": "ColumnSet",
+                        "columns": [
+                            {
+                                "type": "Column",
+                                "width": "stretch"
+                            },
+                            {
+                                "type": "Column",
+                                "width": "stretch",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Pass Percentage",
+                                        "wrap": true,
+                                        "size": "Large",
+                                        "horizontalAlignment": "Center",
+                                        "weight": "Default"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "Column",
+                                "width": "stretch",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "{{pass_percentage}} %",
+                                        "wrap": true,
+                                        "size": "Large",
+                                        "horizontalAlignment": "Center",
+                                        "color": "{{color}}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "separator": true
+                    },
+                    {
+                        "type": "Table",
+                        "columns": [
+                            {
+                                "width": 1
+                            },
+                            {
+                                "width": 1
+                            },
+                            {
+                                "width": 1
+                            }
+                        ],
+                        "rows": [
+                            {
+                                "type": "TableRow",
+                                "cells": [
+                                    {
+                                        "type": "TableCell",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "Pass ✅",
+                                                "wrap": true,
+                                                "color": "{{GOOD_COLOR}}",
+                                                "horizontalAlignment": "Center"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "TableCell",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "Skiped ⚠️ ",
+                                                "wrap": true,
+                                                "color": "{{WARNING_COLOR}}",
+                                                "horizontalAlignment": "Center"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "TableCell",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "Fail ❌ ",
+                                                "wrap": true,
+                                                "color": "{{ATTENTION_COLOR}}",
+                                                "horizontalAlignment": "Center"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "TableRow",
+                                "cells": [
+                                    {
+                                        "type": "TableCell",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "{{passed_tests}}",
+                                                "wrap": true,
+                                                "color": "{{GOOD_COLOR}}",
+                                                "horizontalAlignment": "Center"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "TableCell",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "{{skipped_tests}}",
+                                                "wrap": true,
+                                                "color": "{{WARNING_COLOR}}",
+                                                "horizontalAlignment": "Center"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "TableCell",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "{{failed_tests}}",
+                                                "wrap": true,
+                                                "color": "{{ATTENTION_COLOR}}",
+                                                "horizontalAlignment": "Center"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Image",
+                        "url": "C:/Projects/ey-canvas-atf-autotesting-contentgenerator/chart.png"
+                    }
+                ],
+                "actions": [
+                    {
+                        "type": "Action.OpenUrl",
+                        "title": "Click here to view the ADO pipeline",
+                        "url": "https://dev.azure.com/EYCTCanvas/FAST.ATF/_build/results?buildId={{build_id}}&view=artifacts&pathAsName=false&type=publishedArtifacts"
+                    }
+                ]
+            }
+        }
+    ]
+}

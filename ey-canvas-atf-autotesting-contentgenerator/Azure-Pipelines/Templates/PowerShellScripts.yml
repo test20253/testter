@@ -1,0 +1,130 @@
+parameters:
+  - name: User1Email
+    type: string
+  - name: User1Password
+    type: string
+  - name: User2Email
+    type: string
+  - name: User2Password
+    type: string
+  - name: User3Email
+    type: string
+  - name: User3Password
+    type: string
+  - name: User4Email
+    type: string
+  - name: User4Password
+    type: string
+  - name: User5Email
+    type: string
+  - name: User5Password
+    type: string
+  - name: User6Email
+    type: string
+  - name: User6Password
+    type: string
+  - name: User7Email
+    type: string
+  - name: User7Password
+    type: string
+  - name: User8Email
+    type: string
+  - name: User8Password
+    type: string
+  - name: User9Email
+    type: string
+  - name: User9Password
+    type: string
+  - name: User10Email
+    type: string
+  - name: User10Password
+    type: string
+  - name: User11Email
+    type: string
+  - name: User11Password
+    type: string
+  - name: User12Email
+    type: string
+  - name: User12Password
+    type: string
+  - name: User13Email
+    type: string
+  - name: User13Password
+    type: string
+  - name: User14Email
+    type: string
+  - name: User14Password
+    type: string
+  - name: User15Email
+    type: string
+  - name: User15Password
+    type: string
+  - name: LTUser10Email
+    type: string
+  - name: LTUser10Password
+    type: string
+  - name: LTUser11Email
+    type: string
+  - name: LTUser11Password
+    type: string
+  - name: LTUser12Email
+    type: string
+  - name: LTUser12Password
+    type: string
+  - name: LTUser13Email
+    type: string
+  - name: LTUser13Password
+    type: string
+  - name: LTUser14Email
+    type: string
+  - name: LTUser14Password
+    type: string
+  - name: LTUser15Email
+    type: string
+  - name: LTUser15Password
+    type: string
+  - name: DochelperUserEmail
+    type: string    
+  - name: DochelperUserPassword
+    type: string    
+  
+steps:
+- powershell: |
+    C:\venvs\venv_3.7.0\Scripts\Activate.ps1
+    $chrome = Get-Process chrome -ErrorAction SilentlyContinue
+    if ($null -ne $chrome) { 
+        taskkill /F /IM chrome.exe
+    }
+    $winword = Get-Process WINWORD -ErrorAction SilentlyContinue
+    if ($null -ne $winword) {
+        taskkill /F /IM WINWORD.EXE
+    }
+    Get-Process -name msedge -ErrorAction SilentlyContinue | ForEach-Object { $_.CloseMainWindow() } -ErrorAction SilentlyContinue
+    cd $(System.DefaultWorkingDirectory)
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser1" -newEmail "${{ parameters.User1Email }}" -newPassword "${{ parameters.User1Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser2" -newEmail "${{ parameters.User2Email }}" -newPassword "${{ parameters.User2Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser3" -newEmail "${{ parameters.User3Email }}" -newPassword "${{ parameters.User3Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser4" -newEmail "${{ parameters.User4Email }}" -newPassword "${{ parameters.User4Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser5" -newEmail "${{ parameters.User5Email }}" -newPassword "${{ parameters.User5Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser6" -newEmail "${{ parameters.User6Email }}" -newPassword "${{ parameters.User6Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser7" -newEmail "${{ parameters.User7Email }}" -newPassword "${{ parameters.User7Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser8" -newEmail "${{ parameters.User8Email }}" -newPassword "${{ parameters.User8Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser9" -newEmail "${{ parameters.User9Email }}" -newPassword "${{ parameters.User9Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser10" -newEmail "${{ parameters.User10Email }}" -newPassword "${{ parameters.User10Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser11" -newEmail "${{ parameters.User11Email }}" -newPassword "${{ parameters.User11Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser12" -newEmail "${{ parameters.User12Email }}" -newPassword "${{ parameters.User12Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser13" -newEmail "${{ parameters.User13Email }}" -newPassword "${{ parameters.User13Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser14" -newEmail "${{ parameters.User14Email }}" -newPassword "${{ parameters.User14Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "CanvasAutomationUser15" -newEmail "${{ parameters.User15Email }}" -newPassword "${{ parameters.User15Password }}"
+    .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser10" -newEmail "$(LTUser10Email)" -newPassword "$(LTUser10Password)"	
+    .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser11" -newEmail "$(LTUser11Email)" -newPassword "$(LTUser11Password)"
+    .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser12" -newEmail "$(LTUser12Email)" -newPassword "$(LTUser12Password)"
+    .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser13" -newEmail "$(LTUser13Email)" -newPassword "$(LTUser13Password)"
+    .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser14" -newEmail "$(LTUser14Email)" -newPassword "$(LTUser14Password)"
+    .\Resources\updateCredenciales.ps1 -targetUser "LTCanvasAutomationUser15" -newEmail "$(LTUser15Email)" -newPassword "$(LTUser15Password)"
+    .\Resources\credentialCreation.ps1 -target "eydocument" -userName "us\${{ parameters.DochelperUserEmail }}" -userPassword "${{ parameters.DochelperUserPassword }}"
+    .\Resources\runDocHelperv2.ps1
+  workingDirectory: '$(build.sourcesdirectory)'
+  displayName: 'Executing PowerShell Scripts'
+  continueOnError: true
+  timeoutInMinutes: 360

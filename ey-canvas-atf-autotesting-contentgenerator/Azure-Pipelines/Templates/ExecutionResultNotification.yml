@@ -1,0 +1,57 @@
+# variables:
+#   - group: QACanvasAutomation
+
+parameters:
+  - name: ExecutionEnvironment
+    type: string
+
+steps:
+  # - task: UsePythonVersion@0
+  #   inputs:
+  #     versionSpec: '3.8'
+  #     addToPath: true
+  #     architecture: 'x64'
+
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Write your PowerShell commands here.
+        Write-Host "Testing report functionality"
+
+  - task: PipAuthenticate@1
+    inputs:
+      artifactFeeds: 'ADO-Scriptless'
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install requests
+    displayName: 'Install dependencies'
+
+#  - download: current
+#    artifact: variables
+
+#  - task: PowerShell@2
+#    inputs:
+#      targetType: 'inline'
+#      script: |
+#        $text = Get-Content $(Pipeline.Workspace)\variables\variable.txt -Raw
+#        Write-Host "$text"
+#        Write-Host "##vso[task.setvariable variable=email_recipients;isOutput=true]$text"
+#    name: 'output_variable'
+
+
+  - task: PowerShell@2
+    continueOnError: true
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Write your PowerShell commands here.
+        cd $(System.DefaultWorkingDirectory)
+        cd ./Azure-Pipelines/Templates/AutomationReport_Scripts/
+        python Email_report.py --environment '$(environment_env)' --pat_token '$(pat_token_ADO)' --sendgrid_token '$(sendgrid_token)' --buildid '$(buildid)' --email_recipients '$(email_recipients)' --emailSubject '$(emailSubject)'
+        Write-Host "Mail Report is sent"
+        python SendExecutionReport.py --pat_token '$(pat_token_ADO)' --sendgrid_token '$(sendgrid_token)' --environment '${{parameters.ExecutionEnvironment}}' --buildid '$(buildid)' --email_recipients '$(email_recipients)' --emailSubject '$(emailSubject)' --sendgrid_url '$(sendgrid_url)' --webhookUrl '$(CGWebhookURL)'
+        Write-Host "Teams Report is sent"
+        
+        
