@@ -1,0 +1,1579 @@
+<test-cases>
+    <test-case name="Verify Canvas Forms Module" description="Canvas Forms Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166464" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166464" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" trans_name="" file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" trans_name="" file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" trans_name="" file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Given: User has Read Only Role for the Canvas Forms Module,  
+              for Channel: Global and Language: English
+">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_canva_forms%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="driver" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" trans_name="" file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application ">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method ado_expected_result="" continue_on_fail="true" description="When:  User navigates to Canvas Forms Module. " flatten="false" ignore_on_fail="false" keyword="Click Element And Wait" library="CommonUtils" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Custom" warn_on_fail="false" trans_name="">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Forms%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Get  title on Canvas Forms page." flatten="false" ignore_on_fail="false" keyword="Get Text" library="CommonUtils" nolog="false" output="get_text" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Custom" warn_on_fail="false" trans_name="">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Forms%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Then validate Forms title on Canvas Forms page.
+" flatten="false" ignore_on_fail="false" keyword="Should Be Equal As Strings" library="BuiltIn" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Library" warn_on_fail="false" trans_name="">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Forms"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="false" description="Close Browser" flatten="false" ignore_on_fail="false" keyword="Close Browser" library="Selenium" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" trans_name="">
+                <input-parameters/>
+            </method>
+            <method ado_expected_result="" continue_on_fail="false" description="Given: User doesn’t have Read Only Role for the Canvas Forms Module,  
+              for Channel: Global and Language: English
+" flatten="false" ignore_on_fail="false" keyword="Revoke Cg User Access" library="APICommonMethods" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Custom" warn_on_fail="false" trans_name="">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module ado_expected_result="" continue_on_fail="true" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="driver" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" trans_name="" file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Canvas Forms Module. ">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method ado_expected_result="" continue_on_fail="true" description="Wait For Element To Be Visible" flatten="false" ignore_on_fail="false" keyword="Wait For Element To Be Visible" library="Selenium" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" trans_name="">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Then:   Verify the Canvas Forms Module is not present on the home page." flatten="false" ignore_on_fail="false" keyword="Page Should Not Contain Element" library="Selenium" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" trans_name="">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Forms%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Get text  on the home page " flatten="false" ignore_on_fail="false" keyword="Get Text" library="Selenium" nolog="false" output="get_text" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" trans_name="">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Then:   Validate if the “user has no access” text is present on the home page 
+" flatten="false" ignore_on_fail="false" keyword="Should Be Equal As Strings" library="BuiltIn" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Library" warn_on_fail="false" trans_name="">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado/>
+            <dependencies/>
+            <scriptless/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Canvas Tasks Module" description="Canvas Task Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166465" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166465" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Given: User has Read Only Role for the Canvas Tasks Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_task%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When:  User navigates to Canvas Tasks Module. " output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Tasks%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get Tasks title on Canvas Tasks page" output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Tasks%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:   Verify if the user has successfully navigated to Canvas Tasks page by validating
+             Tasks title on Canvas Tasks page.
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Tasks"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false"/>
+            <method keyword="Revoke Cg User Access" description="Given: User doesn’t have Read Only Role for the Canvas Tasks Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Canvas Tasks Module. " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="Wait For Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="Then:   Verify the Canvas Tasks Module is not present on the home page." output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Tasks%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get text  on the home page " output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:   Validate if the “user has no access” text is present on the home page 
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Canvas PSP Indexes Module" description="Canvas PSP indexes Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166466" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166466" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Given: User has Read Only Role for the Canvas PSP Indexes Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_psp_indexes%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When:  User navigates to Canvas PSP indexes Module. " output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Psp_Indexex%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get PSP indexes title on Canvas PSP indexes page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Psp_Indexex%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the user has successfully navigated to Canvas PSP indexes page by validating
+             PSP indexes title on Canvas PSP indexes page.
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="PSP Indexes"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false"/>
+            <method keyword="Revoke Cg User Access" description="Given: User doesn’t have Read Only Role for the Canvas PSP Indexes Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Canvas PSP indexes Module. " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="Wait For Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="Then:   Verify the Canvas PSP indexes Module is not present on the home page." output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Psp_Indexex%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get text  on the home page " output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:   Validate if the “user has no access” text is present on the home " output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Profile Module" description="Profile Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166467" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166467" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Given: User has Read Only Role for the Profile Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_profile%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When:  User navigates to Profile Module. " output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Profile%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get Profile title on Profile page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Profile%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the user has successfully navigated to Profile page by validating
+              Profile title on Profile page.
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Profile"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false"/>
+            <method keyword="Revoke Cg User Access" description="Given: User doesn’t have Read Only Role for the Profile Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Canvas Profile Module. " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="Wait For Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="Then:   Verify the Canvas Profile Module is not present on the home page." output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Profile%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get text  on the home page " output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:   Validate if the “user has no access” text is present on the home page " output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Group Audit Instructions Module" description="Group Audit Instructions" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166468" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166468" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Given: User has Read Only Role for the Group Audit Instructions,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_group_audit%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When:  User navigates to Group Audit Instructions Module" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Group_Instruction%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get title on Group Audit Instructions page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Text_Group_Instructions%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the user has successfully navigated to Group Audit Instructions page by 
+             validating Group Instructions title on Group Audit Instructions page.
+
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Group Instructions"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false"/>
+            <method keyword="Revoke Cg User Access" description="Given: User doesn’t have Read Only Role for the Group Instructions Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Group Audit Instructions Module. " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="Wait For Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="Then:   Verify the Group Instructions Module is not present on the home page." output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Group_Instruction%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get text on the home page" output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:   Validate if the “user has no access” text is present on the home page 
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Risk Factors Module" description="Risk Factors Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166469" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166469" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Given: User has Read Only Role for the Risk Factors Module,  
+              for Channel: Global and Language: English
+">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_risk_factor%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="driver" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application ">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method ado_expected_result="" continue_on_fail="true" description="When:  User navigates to Risk Factors Module. " flatten="false" ignore_on_fail="false" keyword="Click Element And Wait" library="CommonUtils" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Custom" warn_on_fail="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Risk_Factor%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get Risk Factors title on Risk Factors page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Text_Risk_Factor%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the user has successfully navigated to Risk Factors page by validating
+              Risk Factors title on Risk Factors page.
+
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Risk Factors"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="false" description="Close Browser" flatten="false" ignore_on_fail="false" keyword="Close Browser" library="Selenium" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" inner_steps="false">
+                <input-parameters/>
+            </method>
+            <method ado_expected_result="" continue_on_fail="false" description="Given: User doesn’t have Read Only Role for the Risk Factors Module,  
+              for Channel: Global and Language: English
+" flatten="false" ignore_on_fail="false" keyword="Revoke Cg User Access" library="APICommonMethods" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Custom" warn_on_fail="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module ado_expected_result="" continue_on_fail="true" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="driver" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Risk Factors Module. ">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method ado_expected_result="" continue_on_fail="true" description="Wait For Element To Be Visible" flatten="false" ignore_on_fail="false" keyword="Wait For Element To Be Visible" library="Selenium" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Then:   Verify the Risk Factors Module is not present on the home page." flatten="false" ignore_on_fail="false" keyword="Page Should Not Contain Element" library="Selenium" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Risk_Factor%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Get text  on the home page " flatten="false" ignore_on_fail="false" keyword="Get Text" library="Selenium" nolog="false" output="get_text" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Then:   Validate if the “user has no access” text is present on the home page 
+" flatten="false" ignore_on_fail="false" keyword="Should Be Equal As Strings" library="BuiltIn" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Library" warn_on_fail="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test(1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator(1144069)" default="false"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Publish Content Module" description="Publish Content Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166470" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166470" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/landing_page.xml" module-name="Remove and Add User Role" module-description="Add Read Only Role for User1" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_publish%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line_all%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organization_all%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When:  User navigates to Publish Content Module. " output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Publish%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get Publish title on Publish Content page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Text_Publish%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the user has successfully navigated to Publish Content page by validating
+             Publish title on Publish Content page.
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Publish"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false"/>
+            <method keyword="Revoke Cg User Access" description="Given: User doesn’t have Read Only Role for the Publish Content Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Publish Content Module. " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="Wait For Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="Then:   Verify the Publish Content Module is not present on the home page." output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Publish%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get text on the home page " output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:   Validate if the “user has no access” text is present on the home page 
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Manage Access Module" description="Admin Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166471" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166471" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/landing_page.xml" module-name="Remove and Add User Role" module-description="Add Admin Role for User1" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_admin%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line_all%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organization_all%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:add_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When:  User navigates to Manage access Module." output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Manage_Access%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get Users title in Manage access page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Text_User%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the user has successfully navigated to Manage access page by validating
+             Users title in Manage access page.
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Users"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false"/>
+            <method keyword="Revoke Cg User Access" description="Given: User doesn’t have Add Role for the Admin Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:add_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Manage access Module. " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="Wait For Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="Then:   Verify the Manage access Module is not present on the home page." output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Manage_Access%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get text on the home page " output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:   Validate if the “user has no access” text is present on the home page 
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Reporting Module" description="Reporting Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1166472" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1166472" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="undefined">
+        <SETUP/>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User has access to CG application" output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When: User navigates to Reporting Module. " output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Reporting%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get Reporting title on Reporting page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Reporting%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the user has successfully navigated to Reporting page by 
+             validating Reporting title on Reporting page.
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Reporting"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Validate User Access in CG UI" description="Validate User Access in CG UI" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1187865" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1187865" ado_automation_status="Automated" ado_automation_status_field="Test_Automation_Coverage" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Given: Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Given: Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="And: User has Create/Update Role for the Canvas Forms Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_canva_forms%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:create_update_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <method keyword="Get Automation User Info From Credential Manager" description="Get Automation User Info From Credential Manager" output="automation_user" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="credential_user_name" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get User Id For Logged User" description="Get User Id For Logged User" output="user" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="user_name" value="${automation_user['userName']}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Revoke Cg User Role" description="Given: Remove User from CG " output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When: User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait Until Element Contains" description="Then: Validate Forbidden" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:canvas_forms:Error_Forbidden%&gt;"/>
+                    <parameter name="text" value="Forbidden"/>
+                    <parameter name="timeout" value="&lt;%env:longTimeOut%&gt;"/>
+                    <parameter name="error" value="Error message not found"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Given: Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false"/>
+            <method keyword="Add Cg User" description="And: Add User in CG" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first_name" value="${user['users'][0]['firstName']}"/>
+                    <parameter name="last_name" value="${user['users'][0]['lastName']}"/>
+                    <parameter name="user_name" value="${automation_user['userName']}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When: User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Get Text" description="Get Reporting title on Reporting page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Reporting%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the dashboard has Reporting module by validating Reporting title
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Reporting"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN>
+            <method keyword="Add Cg User" description="And: Add User in CG" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first_name" value="${user['users'][0]['firstName']}"/>
+                    <parameter name="last_name" value="${user['users'][0]['lastName']}"/>
+                    <parameter name="user_name" value="${automation_user['userName']}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+        </TEARDOWN>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Maps Module" description="Risk Factors Module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1223993" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1223993" ado_automation_status="Automated" ado_automation_status_field="AutomationStatus" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User3">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Given: User has Read Only Role for the Maps Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_maps%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module ado_expected_result="" continue_on_fail="false" flatten="false" ignore_on_fail="false" inner_steps="false" library="App module" nolog="false" output="driver" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Scriptless" warn_on_fail="false" file-name="app_modules/login.xml" module-name="cg_login" module-description="Given: User launches Content Generator application ">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When:  User navigates to Maps Module. " output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Maps%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Get Maps title on Maps page." output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Title_Maps%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then:  Verify if the user has successfully navigated to Maps page by validating
+              Maps title on Maps page.
+
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Map list"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="false" description="Close Browser" flatten="false" ignore_on_fail="false" keyword="Close Browser" library="Selenium" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" inner_steps="false">
+                <input-parameters/>
+            </method>
+            <method keyword="Revoke Cg User Access" description="Given: User doesn’t have Read Only Role for the Maps Module,  
+              for Channel: Global and Language: English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When:  User navigates to Maps Module. " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="Then: Wait For Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="Then:   Verify the Maps Module is not present on the home page." output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Maps%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Get text  on the home page " flatten="false" ignore_on_fail="false" keyword="Get Text" library="Selenium" nolog="false" output="get_text" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Tools" warn_on_fail="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Then:   Validate if the “user has no access” text is present on the home page 
+" flatten="false" ignore_on_fail="false" keyword="Should Be Equal As Strings" library="BuiltIn" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Library" warn_on_fail="false" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1166409" suite_name="UI DashBoard Test (ID: 1166409)" plan="1144069" plan_name="QA_Automation_Content_Generator (ID: 1144069)" default="true"/>
+                <config suite="1234235" suite_name="UI DashBoard Test(1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan(1220115)" default="false"/>
+                <config suite="1296587" suite_name="UI DashBoard Test(1296587)" plan="1220117" plan_name="FY25 End to End Regression - Master Test Plan(1220117)" default="false"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Canvas IT Risk Module" description="User validate it risk module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1306824" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1306824" ado_automation_status="Automated" ado_automation_status_field="Test_Automation_Coverage" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Given Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="When Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Then User has Read Only Role for the Canvas Forms Module,  
+              for Channel Global and Language English
+" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_it_risks%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When User navigates to IT Risk Module " output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_IT_Risk%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="And Get title on IT Risk page" output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Text_IT_Risk%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="And validate IT Risk text on IT Risk page.
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="IT risk name"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Then Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false"/>
+            <method keyword="Revoke Cg User Access" description="Given User doesn’t have Read Only Role for the IT Risk Module 
+              for Channel Global and Language English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When User navigates to IT Risk Module. " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="And Wait for Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="And Verify the IT Risk Module is not present on the home page" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_IT_Risk%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Then Get text on the home page " output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then   Validate if the “user has no access” text is present on the home page 
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1234235" suite_name="UI DashBoard Test (ID: 1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan (ID: 1220115)" default="true"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+    <test-case name="Verify Canvas Technology Module" description="User validate technology list module" tags="" data_file="UITestDashboardSmokeTest.xml" data_index="['Create_Global_English']" id="" ado_testcase_id="1306825" ado_testcase_id_url="https://dev.azure.com/EYCTCanvas/95b1042d-7e42-40a0-9df0-ecd2917d2ced/_workitems/edit/1306825" ado_automation_status="Automated" ado_automation_status_field="Test_Automation_Coverage" ado_steps_sync="true" language_exclude="" localization="false" snapshot="undefined" restore="">
+        <SETUP>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="Given Get MSAL Token for User3" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/token_methods.xml" module-name="Get MSAL Token" module-description="When Get MSAL Token for User6" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="resource_name" value="&lt;%env:cgTenent%&gt;"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="token_name" value="CGTOKEN"/>
+                </input-parameters>
+            </app-module>
+            <app-module file-name="app_modules/common.xml" module-name="Remove and Add User Roles" module-description="Then User has Read Only Role for the Canvas Forms Module,  
+              for Channel Global and Language English
+" output="" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="module_name" value="&lt;%data:service_module_technology%&gt;"/>
+                    <parameter name="credentialusername1" value="&lt;%data:tokenUser6%&gt;"/>
+                    <parameter name="credentialusername3" value="&lt;%data:tokenUser1%&gt;"/>
+                    <parameter name="channel_name" value="&lt;%data:channel_name%&gt;"/>
+                    <parameter name="language_name" value="&lt;%data:channel_language%&gt;"/>
+                    <parameter name="service_line" value="&lt;%data:service_line%&gt;"/>
+                    <parameter name="service_organisation" value="&lt;%data:service_organisation%&gt;"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                </input-parameters>
+            </app-module>
+        </SETUP>
+        <test_steps>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="Given User launches Content Generator application " output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Click Element And Wait" description="When User navigates to Technology Module" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Technology%&gt;"/>
+                    <parameter name="loader_locator" value="&lt;%elm:common:Loading Bar%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="And Get title on Technology page" output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="CommonUtils" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Text_Technology%&gt;"/>
+                    <parameter name="time_out" value="&lt;%env:defaultTimeOut%&gt;"/>
+                </input-parameters>
+            </method>
+            <method keyword="Should Be Equal As Strings" description="Then validate Technology list title on Technology page
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Library" library="BuiltIn" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="Technology"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+            <method keyword="Close Browser" description="Then Close Browser" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false"/>
+            <method keyword="Revoke Cg User Access" description="Given User doesn’t have Read Only Role for the Technology Module,  
+              for Channel Global and Language English
+" output="" output_type="scalar" skip="false" ado_expected_result="" type="Custom" library="APICommonMethods" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="organisation_id" value="${service_organisation_id}"/>
+                    <parameter name="role_id" value="&lt;%data:read_only_role_id%&gt;"/>
+                    <parameter name="module_id" value="${service_module_id}"/>
+                    <parameter name="service_line_id" value="${service_line_id}"/>
+                    <parameter name="user_id" value="${user_id}"/>
+                    <parameter name="user_name_token" value="&lt;%data:tokenUser1%&gt;"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules/login.xml" module-name="cg_login" module-description="When User navigates to Technology Module" output="driver" output_type="scalar" ado_expected_result="" type="Scriptless" library="App module" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" skip="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%env:ContentGeneratorURL%&gt;"/>
+                    <parameter name="CredentialUserName" value="&lt;%data:tokenUser6%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method keyword="Wait For Element To Be Visible" description="And Wait For Element To Be Visible" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                    <parameter name="timeout" value="60"/>
+                </input-parameters>
+            </method>
+            <method keyword="Page Should Not Contain Element" description="And   Verify the Technology Module is not present on the home page" output="" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:Button_Technology%&gt;"/>
+                    <parameter name="message" value="None"/>
+                    <parameter name="loglevel" value="TRACE"/>
+                </input-parameters>
+            </method>
+            <method keyword="Get Text" description="Then Get text on the home page " output="get_text" output_type="scalar" skip="false" ado_expected_result="" type="Tools" library="Selenium" continue_on_fail="true" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="locator" value="&lt;%elm:dashboard:user_has_no_access%&gt;"/>
+                </input-parameters>
+            </method>
+            <method ado_expected_result="" continue_on_fail="true" description="Then:   Validate if the “user has no access” text is present on the home page 
+" flatten="false" ignore_on_fail="false" keyword="Should Be Equal As Strings" library="BuiltIn" nolog="false" output="" output_type="scalar" remove_details="false" debug="false" repeat="" retry_on_fail_count="" retry_on_fail_interval="" return_status="false" skip="false" type="Library" warn_on_fail="false" trans_name="" inner_steps="false">
+                <input-parameters>
+                    <parameter name="first" value="${get_text}"/>
+                    <parameter name="second" value="User has no access"/>
+                    <parameter name="msg" value="None"/>
+                    <parameter name="values" value="True"/>
+                    <parameter name="ignore_case" value="False"/>
+                    <parameter name="strip_spaces" value="False"/>
+                    <parameter name="formatter" value="str"/>
+                    <parameter name="collapse_spaces" value="False"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <TEARDOWN/>
+        <configs>
+            <ado>
+                <config suite="1234235" suite_name="UI DashBoard Test (ID: 1234235)" plan="1220115" plan_name="FY25 SIT / Automation - Master Test Plan (ID: 1220115)" default="true"/>
+            </ado>
+            <scriptless/>
+            <dependencies/>
+            <datasheets/>
+            <execution/>
+        </configs>
+    </test-case>
+</test-cases>

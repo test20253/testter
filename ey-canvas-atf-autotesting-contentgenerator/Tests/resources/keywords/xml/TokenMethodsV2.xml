@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keywordspec name="TokenMethodsV2" type="LIBRARY" format="ROBOT" scope="TEST" generated="2025-08-28T03:23:00+00:00" specversion="6" source="C:\Users\TY749ZY\PycharmProjects\CG\ey-canvas-atf-autotesting-contentgenerator\Tests\custom_methods\TokenMethodsV2.py" lineno="10">
+<version>1.0</version>
+<doc>Documentation for library ``TokenMethodsV2``.</doc>
+<tags>
+</tags>
+<inits>
+</inits>
+<keywords>
+<kw name="Create Token" lineno="59">
+<arguments repr="token_name: TokenNames, user_name_token=CanvasAutomationUser1">
+<arg kind="POSITIONAL_OR_NAMED" required="true" repr="token_name: TokenNames">
+<name>token_name</name>
+<type name="TokenNames" typedoc="TokenNames"/>
+</arg>
+<arg kind="POSITIONAL_OR_NAMED" required="false" repr="user_name_token=CanvasAutomationUser1">
+<name>user_name_token</name>
+<default>CanvasAutomationUser1</default>
+</arg>
+</arguments>
+<doc>Create the token doing the API call to MSAL and save the token in pysondb
+Args:
+    token_name: One of the values of the enum TokenNames
+    engagement_data: dict with the following keys: location_url and resource name
+    user_name_token: username in the .env E.g CanvasAutomationUser1
+
+Returns:
+    Used body for creating the token with the following structure
+    body = {
+        "user": user_name_token,
+        "token_name": str(token_name),
+        "location_url": urls_for_msal["location_url"],
+        "resource_name":urls_for_msal["resource_name"],
+        "token":token
+    }</doc>
+<shortdoc>Create the token doing the API call to MSAL and save the token in pysondb Args:     token_name: One of the values of the enum TokenNames     engagement_data: dict with the following keys: location_url and resource name     user_name_token: username in the .env E.g CanvasAutomationUser1</shortdoc>
+</kw>
+<kw name="Get Token" lineno="12">
+<arguments repr="token_name: TokenNames, user_name_token=CanvasAutomationUser1">
+<arg kind="POSITIONAL_OR_NAMED" required="true" repr="token_name: TokenNames">
+<name>token_name</name>
+<type name="TokenNames" typedoc="TokenNames"/>
+</arg>
+<arg kind="POSITIONAL_OR_NAMED" required="false" repr="user_name_token=CanvasAutomationUser1">
+<name>user_name_token</name>
+<default>CanvasAutomationUser1</default>
+</arg>
+</arguments>
+<doc>Args:
+    token_name: One of the values of the enum Tests/Utils/tokens/TokenNames.py
+    engagement_data: dictionary with the following keys of the given engagement:
+
+                        "incountry_app_uri"
+                        "incountry_app_audience"
+                        "hercules_app_audience"
+                        "hercules_app_uri"
+
+                     Not mandatory for tokens that are having static tenant url, E.g: UNIVERSAL
+                     Note:A method called get_engagement_full_data in Tests/Utils/EngagementData.py exist and will return the needed data in the format this method is expecting
+
+    user_name_token: user_name in the forma of the .env file E.g: CanvasAutomationUser1
+
+Returns:
+    Bearer token</doc>
+<shortdoc>Args:     token_name: One of the values of the enum Tests/Utils/tokens/TokenNames.py     engagement_data: dictionary with the following keys of the given engagement:</shortdoc>
+</kw>
+<kw name="Get Url For Msal Request For A Token Name" lineno="128">
+<arguments repr="token_name: TokenNames">
+<arg kind="POSITIONAL_OR_NAMED" required="true" repr="token_name: TokenNames">
+<name>token_name</name>
+<type name="TokenNames" typedoc="TokenNames"/>
+</arg>
+</arguments>
+<doc>Args:
+    token_name: One of the values of the enum Tests/Utils/tokens/TokenNames.py
+    engagement_data: dictionary with the following keys of the given engagement:
+
+                        "incountry_app_uri"
+                        "incountry_app_audience"
+                        "hercules_app_audience"
+                        "hercules_app_uri"
+
+                     Not mandatory for tokens that are having static tenant url, E.g: UNIVERSAL
+                     Note:A method called get_engagement_full_data in Tests/Utils/EngagementData.py exist and will return the needed data in the format this method is expecting
+Returns:
+    dictionary with the needed urls for get the MSAL token E.g
+    {
+        "location_url": "https://eycanvascoreapi-euw-uat3.eyua.net",
+        "resource_name": "https://eygs.onmicrosoft.com/canvas-uat3-nor",
+    }</doc>
+<shortdoc>Args:     token_name: One of the values of the enum Tests/Utils/tokens/TokenNames.py     engagement_data: dictionary with the following keys of the given engagement:</shortdoc>
+</kw>
+<kw name="Refresh Token If Expired" lineno="91">
+<arguments repr="token_info">
+<arg kind="POSITIONAL_OR_NAMED" required="true" repr="token_info">
+<name>token_info</name>
+</arg>
+</arguments>
+<doc>check token_expiration_time in pyson and if it is greater than the actual time, will generate a new one and update the token in pyson
+Args:
+    token_info: dictionary with the following keys:
+                user
+                token_name
+                location_url
+                resource_name
+                token
+
+Returns:
+    None</doc>
+<shortdoc>check token_expiration_time in pyson and if it is greater than the actual time, will generate a new one and update the token in pyson Args:     token_info: dictionary with the following keys:                 user                 token_name                 location_url                 resource_name                 token</shortdoc>
+</kw>
+</keywords>
+<typedocs>
+<type name="TokenNames" type="Enum">
+<doc>str(object='') -&gt; str
+str(bytes_or_buffer[, encoding[, errors]]) -&gt; str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to 'strict'.</doc>
+<accepts>
+<type>string</type>
+</accepts>
+<usages>
+<usage>Create Token</usage>
+<usage>Get Token</usage>
+<usage>Get Url For Msal Request For A Token Name</usage>
+</usages>
+<members>
+<member name="TOKEN_NAME_UNIVERSAL" value="CGTOKEN"/>
+</members>
+</type>
+</typedocs>
+</keywordspec>

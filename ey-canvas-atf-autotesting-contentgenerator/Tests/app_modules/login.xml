@@ -1,0 +1,62 @@
+<app-modules>
+    <app-module name="cg_login" description="Content Generator Login" return="${driver}" restore="">
+        <test_steps>
+            <method library="Selenium" type="Tools" keyword="Launch Browser" description="Launch Browser" output="driver" output_type="scalar" skip="false" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%arg:url%&gt;"/>
+                    <parameter name="alias" value="None"/>
+                    <parameter name="chrome_options" value="add_experimental_option('prefs', {'profile.cookie_controls_mode':0})"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules\generic_functions.xml" module-name="Login" module-description="Log-in method for CG" output="" output_type="scalar" skip="false" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="driver" value="${driver}"/>
+                    <parameter name="CredentialUserName" value="&lt;%arg:CredentialUserName%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method library="Selenium" type="Tools" keyword="Reload Page" description="Reload Page" output="" output_type="scalar" skip="false" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false"/>
+            <method library="CommonMethods" type="Custom" keyword="Wait Page To Load" description="Wait Page To Load" output="" output_type="scalar" skip="false" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="driver" value="${driver}"/>
+                </input-parameters>
+            </method>
+            <method library="BuiltIn" type="Library" keyword="Set Test Variable" description="Set Test Variable for storing driver" output="" output_type="scalar" skip="false" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false" trans_name="">
+                <input-parameters>
+                    <parameter name="name" value="$driver"/>
+                    <parameter name="*values" value="${driver}"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <arguments>
+            <arg name="url" default_value=""/>
+            <arg name="CredentialUserName" default_value=""/>
+        </arguments>
+    </app-module>
+    <app-module name="cg_login_user2" description="Content Generator Login" return="${driver1}">
+        <test_steps>
+            <method library="Selenium" type="Tools" keyword="Launch Browser" description="Launch Browser" output="driver1" output_type="scalar" skip="false" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="url" value="&lt;%arg:url%&gt;"/>
+                    <parameter name="alias" value="None"/>
+                    <parameter name="chrome_options" value="add_experimental_option('prefs', {'profile.cookie_controls_mode':0})"/>
+                </input-parameters>
+            </method>
+            <app-module file-name="app_modules\generic_functions.xml" module-name="Login_User2" module-description="Log-in method for CG" output="" output_type="scalar" skip="false" type="Scriptless" library="App module" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="driver" value="${driver1}"/>
+                    <parameter name="CredentialUserName" value="&lt;%arg:CredentialUserName%&gt;"/>
+                </input-parameters>
+            </app-module>
+            <method library="Selenium" type="Tools" keyword="Reload Page" description="Reload Page" output="" output_type="scalar" skip="false" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false"/>
+            <method library="CommonMethods" type="Custom" keyword="Wait Page To Load" description="Wait Page To Load" output="" output_type="scalar" skip="false" continue_on_fail="false" retry_on_fail_count="" retry_on_fail_interval="" nolog="false" flatten="false" remove_details="false" debug="false" ignore_on_fail="false" warn_on_fail="false" repeat="" return_status="false">
+                <input-parameters>
+                    <parameter name="driver" value="${driver1}"/>
+                </input-parameters>
+            </method>
+        </test_steps>
+        <arguments>
+            <arg name="url" default_value=""/>
+            <arg name="CredentialUserName" default_value=""/>
+        </arguments>
+    </app-module>
+</app-modules>

@@ -1,0 +1,246 @@
+{
+    "Check Landing page": {
+        "id": 1,
+        "requiredForExecution": [],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Create Engagement with New Workspace": {
+        "id": 2,
+        "requiredForExecution": [
+            1
+        ],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Create Engagement with Existing Workspace": {
+        "id": 3,
+        "requiredForExecution": [
+            1
+        ],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Submit Profile": {
+        "id": 4,
+        "requiredForExecution": [],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Complete Independence": {
+        "id": 5,
+        "requiredForExecution": [
+            4
+        ],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Check Dashboard of selected engagement": {
+        "id": 6,
+        "requiredForExecution": [
+            5
+        ],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Add Task to selected engagement": {
+        "id": 7,
+        "requiredForExecution": [],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Upload Document": {
+        "id": 8,
+        "requiredForExecution": [
+            7
+        ],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Download Document": {
+        "id": 9,
+        "requiredForExecution": [
+            8
+        ],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Manage Team": {
+        "id": 10,
+        "requiredForExecution": [],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Copy Engagement": {
+        "id": 11,
+        "requiredForExecution": [],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Archive": {
+        "id": 12,
+        "requiredForExecution": [],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Roll Forward": {
+        "id": 13,
+        "requiredForExecution": [
+            12
+        ],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Restore": {
+        "id": 14,
+        "requiredForExecution": [
+            12
+        ],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Create FULL SCOT": {
+        "id": 15,
+        "requiredForExecution": [],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Copy a SCOT": {
+        "id": 16,
+        "requiredForExecution": [
+            15
+        ],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Audit Group": {
+        "id": 17,
+        "requiredForExecution": [],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Helix Integration": {
+        "id": 18,
+        "requiredForExecution": [],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Internal user - Create group and add user": {
+        "id": 19,
+        "requiredForExecution": [
+            4,
+            5
+        ],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Internal user - Plain client request": {
+        "id": 20,
+        "requiredForExecution": [
+            4,
+            5,
+            19
+        ],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Internal user - Withdraw client request": {
+        "id": 21,
+        "requiredForExecution": [
+            4,
+            5,
+            19
+        ],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "Internal user - Document client request": {
+        "id": 22,
+        "requiredForExecution": [
+            4,
+            5,
+            19
+        ],
+        "optionals": [
+            [
+                2,
+                3
+            ]
+        ],
+        "status": "NOT RUNNED"
+    },
+    "1 - User Setings - Set language date and number format": {
+        "id": 23,
+        "requiredForExecution": [],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    },
+    "Create Engagement with Existing Workspace as Primary": {
+        "id": 24,
+        "requiredForExecution": [
+            2
+        ],
+        "optionals": [],
+        "status": "NOT RUNNED"
+    }
+}

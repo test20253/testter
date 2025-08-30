@@ -1,0 +1,3 @@
+<PageObject>
+    <element element_attribute="xpath" element_attribute_value="//input[@id='idSIButton9']" element_keyword="button_login_trust_ey_continue" element_keyword_description="Continue button on screen: Do you trust ey.com?"/>
+</PageObject>

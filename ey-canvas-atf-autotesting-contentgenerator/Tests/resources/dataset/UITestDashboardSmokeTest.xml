@@ -1,0 +1,41 @@
+<data>
+    <row>
+        <ID>Create_Global_English</ID>
+        <tokenUser1>CanvasAutomationUser1</tokenUser1>
+        <tokenUser6>CanvasAutomationUser6</tokenUser6>
+        <actionUser>CanvasAutomationUser6</actionUser>
+        <channel_name>Global</channel_name>
+        <channel_language>English</channel_language>
+        <service_line>Assurance - Audit</service_line>
+        <service_organisation>Canvas</service_organisation>
+        <response_code>201</response_code>
+        <Invalid_response_code>400</Invalid_response_code>
+        <group_audit_service_module>Group Audit</group_audit_service_module>
+        <create_update_role_id>7</create_update_role_id>
+        <delete_role_id>10</delete_role_id>
+        <approve_role_id>22</approve_role_id>
+        <service_module_canva_forms>CanvasForms</service_module_canva_forms>
+        <read_only_role_id>13</read_only_role_id>
+        <service_module_task>Tasks</service_module_task>
+        <service_module_psp_indexes>PSPIndexes</service_module_psp_indexes>
+        <service_module_profile>Profile</service_module_profile>
+        <service_module_group_audit>Group Audit</service_module_group_audit>
+        <service_module_risk_factor>Risk Factors</service_module_risk_factor>
+        <service_module_publish>Publish</service_module_publish>
+        <service_module_maps>Navigation Map</service_module_maps>
+        <service_module_admin>Admin</service_module_admin>
+        <add_role_id>4</add_role_id>
+        <service_organization_all>All</service_organization_all>
+        <service_line_all>All</service_line_all>
+        <service_module_it_risks>IT Risks</service_module_it_risks>
+        <service_module_technology>Technology</service_module_technology>
+        <undefined> </undefined>
+        <content_author_group_list> </content_author_group_list>
+        <excluded_channel> </excluded_channel>
+        <excluded_channel_list> </excluded_channel_list>
+        <effective_start_date> </effective_start_date>
+        <effective_end_date> </effective_end_date>
+        <expected_effective_start_date> </expected_effective_start_date>
+        <expected_effective_end_date> </expected_effective_end_date>
+    </row>
+</data>

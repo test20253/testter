@@ -1,0 +1,145 @@
+{
+ "specversion": 3,
+ "name": "TokenMethodsV2",
+ "doc": "<p>Documentation for library <code>TokenMethodsV2</code>.</p>",
+ "version": "1.0",
+ "generated": "2025-08-28T03:23:00+00:00",
+ "type": "LIBRARY",
+ "scope": "TEST",
+ "docFormat": "HTML",
+ "source": "C:\\Users\\TY749ZY\\PycharmProjects\\CG\\ey-canvas-atf-autotesting-contentgenerator\\Tests\\custom_methods\\TokenMethodsV2.py",
+ "lineno": 10,
+ "tags": [],
+ "inits": [],
+ "keywords": [
+  {
+   "name": "Create Token",
+   "args": [
+    {
+     "name": "token_name",
+     "type": {
+      "name": "TokenNames",
+      "typedoc": "TokenNames",
+      "nested": [],
+      "union": false
+     },
+     "defaultValue": null,
+     "kind": "POSITIONAL_OR_NAMED",
+     "required": true,
+     "repr": "token_name: TokenNames"
+    },
+    {
+     "name": "user_name_token",
+     "type": null,
+     "defaultValue": "CanvasAutomationUser1",
+     "kind": "POSITIONAL_OR_NAMED",
+     "required": false,
+     "repr": "user_name_token=CanvasAutomationUser1"
+    }
+   ],
+   "returnType": null,
+   "doc": "<p>Create the token doing the API call to MSAL and save the token in pysondb Args: token_name: One of the values of the enum TokenNames engagement_data: dict with the following keys: location_url and resource name user_name_token: username in the .env E.g CanvasAutomationUser1</p>\n<p>Returns: Used body for creating the token with the following structure body = { \"user\": user_name_token, \"token_name\": str(token_name), \"location_url\": urls_for_msal[\"location_url\"], \"resource_name\":urls_for_msal[\"resource_name\"], \"token\":token }</p>",
+   "shortdoc": "Create the token doing the API call to MSAL and save the token in pysondb Args:     token_name: One of the values of the enum TokenNames     engagement_data: dict with the following keys: location_url and resource name     user_name_token: username in the .env E.g CanvasAutomationUser1",
+   "tags": [],
+   "source": "C:\\Users\\TY749ZY\\PycharmProjects\\CG\\ey-canvas-atf-autotesting-contentgenerator\\Tests\\custom_methods\\TokenMethodsV2.py",
+   "lineno": 59
+  },
+  {
+   "name": "Get Token",
+   "args": [
+    {
+     "name": "token_name",
+     "type": {
+      "name": "TokenNames",
+      "typedoc": "TokenNames",
+      "nested": [],
+      "union": false
+     },
+     "defaultValue": null,
+     "kind": "POSITIONAL_OR_NAMED",
+     "required": true,
+     "repr": "token_name: TokenNames"
+    },
+    {
+     "name": "user_name_token",
+     "type": null,
+     "defaultValue": "CanvasAutomationUser1",
+     "kind": "POSITIONAL_OR_NAMED",
+     "required": false,
+     "repr": "user_name_token=CanvasAutomationUser1"
+    }
+   ],
+   "returnType": null,
+   "doc": "<p>Args: token_name: One of the values of the enum Tests/Utils/tokens/TokenNames.py engagement_data: dictionary with the following keys of the given engagement:</p>\n<p>\"incountry_app_uri\" \"incountry_app_audience\" \"hercules_app_audience\" \"hercules_app_uri\"</p>\n<p>Not mandatory for tokens that are having static tenant url, E.g: UNIVERSAL Note:A method called get_engagement_full_data in Tests/Utils/EngagementData.py exist and will return the needed data in the format this method is expecting</p>\n<p>user_name_token: user_name in the forma of the .env file E.g: CanvasAutomationUser1</p>\n<p>Returns: Bearer token</p>",
+   "shortdoc": "Args:     token_name: One of the values of the enum Tests/Utils/tokens/TokenNames.py     engagement_data: dictionary with the following keys of the given engagement:",
+   "tags": [],
+   "source": "C:\\Users\\TY749ZY\\PycharmProjects\\CG\\ey-canvas-atf-autotesting-contentgenerator\\Tests\\custom_methods\\TokenMethodsV2.py",
+   "lineno": 12
+  },
+  {
+   "name": "Get Url For Msal Request For A Token Name",
+   "args": [
+    {
+     "name": "token_name",
+     "type": {
+      "name": "TokenNames",
+      "typedoc": "TokenNames",
+      "nested": [],
+      "union": false
+     },
+     "defaultValue": null,
+     "kind": "POSITIONAL_OR_NAMED",
+     "required": true,
+     "repr": "token_name: TokenNames"
+    }
+   ],
+   "returnType": null,
+   "doc": "<p>Args: token_name: One of the values of the enum Tests/Utils/tokens/TokenNames.py engagement_data: dictionary with the following keys of the given engagement:</p>\n<p>\"incountry_app_uri\" \"incountry_app_audience\" \"hercules_app_audience\" \"hercules_app_uri\"</p>\n<p>Not mandatory for tokens that are having static tenant url, E.g: UNIVERSAL Note:A method called get_engagement_full_data in Tests/Utils/EngagementData.py exist and will return the needed data in the format this method is expecting Returns: dictionary with the needed urls for get the MSAL token E.g { \"location_url\": \"<a href=\"https://eycanvascoreapi-euw-uat3.eyua.net\">https://eycanvascoreapi-euw-uat3.eyua.net</a>\", \"resource_name\": \"<a href=\"https://eygs.onmicrosoft.com/canvas-uat3-nor\">https://eygs.onmicrosoft.com/canvas-uat3-nor</a>\", }</p>",
+   "shortdoc": "Args:     token_name: One of the values of the enum Tests/Utils/tokens/TokenNames.py     engagement_data: dictionary with the following keys of the given engagement:",
+   "tags": [],
+   "source": "C:\\Users\\TY749ZY\\PycharmProjects\\CG\\ey-canvas-atf-autotesting-contentgenerator\\Tests\\custom_methods\\TokenMethodsV2.py",
+   "lineno": 128
+  },
+  {
+   "name": "Refresh Token If Expired",
+   "args": [
+    {
+     "name": "token_info",
+     "type": null,
+     "defaultValue": null,
+     "kind": "POSITIONAL_OR_NAMED",
+     "required": true,
+     "repr": "token_info"
+    }
+   ],
+   "returnType": null,
+   "doc": "<p>check token_expiration_time in pyson and if it is greater than the actual time, will generate a new one and update the token in pyson Args: token_info: dictionary with the following keys: user token_name location_url resource_name token</p>\n<p>Returns: None</p>",
+   "shortdoc": "check token_expiration_time in pyson and if it is greater than the actual time, will generate a new one and update the token in pyson Args:     token_info: dictionary with the following keys:                 user                 token_name                 location_url                 resource_name                 token",
+   "tags": [],
+   "source": "C:\\Users\\TY749ZY\\PycharmProjects\\CG\\ey-canvas-atf-autotesting-contentgenerator\\Tests\\custom_methods\\TokenMethodsV2.py",
+   "lineno": 91
+  }
+ ],
+ "typedocs": [
+  {
+   "type": "Enum",
+   "name": "TokenNames",
+   "doc": "<p>str(object='') -&gt; str str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>\n<p>Create a new string object from the given object. If encoding or errors is specified, then the object must expose a data buffer that will be decoded using the given encoding and error handler. Otherwise, returns the result of object.__str__() (if defined) or repr(object). encoding defaults to sys.getdefaultencoding(). errors defaults to 'strict'.</p>",
+   "usages": [
+    "Create Token",
+    "Get Token",
+    "Get Url For Msal Request For A Token Name"
+   ],
+   "accepts": [
+    "string"
+   ],
+   "members": [
+    {
+     "name": "TOKEN_NAME_UNIVERSAL",
+     "value": "CGTOKEN"
+    }
+   ]
+  }
+ ],
+ "checksum": "9820ec69fc366fb7932aef4926673ee8"
+}

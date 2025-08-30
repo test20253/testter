@@ -1,0 +1,23 @@
+<test-suites>
+    <test-suite name="UI_DashBoard_SmokeTest" description="UI Smoke Test" tags="Regression,UI-Dev2,UI-Dev1,UI-E2E,UI-UAT3-E2E" ado_testplan="1220115" ado_testsuite="1234235" ado_testsuite_name="UI DashBoard Test (ID: 1234235)" ado_testplan_name="FY25 SIT / Automation - Master Test Plan (ID: 1220115)">
+        <test-cases>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Canvas Forms Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Canvas Tasks Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Canvas PSP Indexes Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Profile Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Group Audit Instructions Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Risk Factors Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Publish Content Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Manage Access Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Reporting Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Maps Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Validate User Access in CG UI" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Canvas IT Risk Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+            <test-case test-case-file="UI Dashboard Smoke Tests.xml" test-case-name="Verify Canvas Technology Module" test-case-index="Create_Global_English" skip="false" browser="chromium-edge-incognito" require_webdriver=""/>
+        </test-cases>
+        <configs>
+            <dependencies/>
+            <execution/>
+        </configs>
+    </test-suite>
+</test-suites>
